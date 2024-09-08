@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>digital clock</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+            background-color: rgba(0, 0, 0, 0.381);
+        }
+
+        .main
+        {
+            height: 260px;
+            width: 600px;
+            border: 2px solid black;
+            position: absolute;
+            top: 170px;
+            left: 470px;
+            box-shadow: 1px 1px 10px 10px black;
+
+        }
+
+        .timebox
+        {
+            height: 160px;
+            width:400px ;
+            border: 2px solid black;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+        }
+        
+        .vertical-stand
+        {
+            height: 170px;
+            width: 2px;
+            rotate: 0deg;
+            border-radius: 20px;
+            box-shadow: 1px 1px 5px 10px black;
+            position: absolute;
+            background-color: black;
+            top: 438px;
+            left: 770px;
+        }
+
+        .horizontal-stand
+        {
+            height: 100px;
+            width: 2px;
+            border: 2px solid black;
+            rotate: 90deg;
+            border-radius: 20px;
+            box-shadow: 1px 1px 5px 10px black;
+            background-color: black;
+            position: absolute;
+            top: 577px;
+            left: 770px;
+
+        }
+
+        .digitalclock
+        {
+            height: 100px;
+            width: 300px;
+            position: absolute;
+            top: 18%;
+            left: 12%;
+            background-color: transparent;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            font-size: 52px;
+            color: yellow;
+        }
+
+
+
+    </style>
+</head>
+<body onload="currenttime()">
+    <img src="./" alt="">
+    <div class="main">
+        <div class="timebox">
+            <h1 class="digitalclock"></h1>
+        </div>
+    </div>
+    <div class="vertical-stand"></div>
+    <div class="horizontal-stand"></div>
+
+
+    <script>
+        
+   const currenttime = ()=>
+   {
+   let time = new Date().toLocaleTimeString(); //1. extractind date into current time
+   document.querySelector(".digitalclock").innerHTML= time;  //3.printing on main page
+   }
+
+   currenttime();   // 2.fucntion call
+
+//    for making it running clock: we need to use set time out: 
+
+  setInterval(() => {           //4.using set INTERVAl we, run the funcion by currentime interval
+    currenttime();
+}, 1000);
+
+
+
+    </script>
+</body>
+</html>
