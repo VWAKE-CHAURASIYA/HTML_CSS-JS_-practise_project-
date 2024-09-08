@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Countdown timer</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+            box-sizing: border-box;
+            background-color: rgba(0, 0, 0, 0.381);
+        }
+
+        .main
+        {
+            height: 260px;
+            width: 600px;
+            border: 2px solid black;
+            position: absolute;
+            top: 170px;
+            left: 470px;
+            box-shadow: 1px 1px 10px 10px black;
+
+        }
+
+        .timebox
+        {
+            height: 160px;
+            width:400px ;
+            border: 2px solid black;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+        }
+        
+        .vertical-stand
+        {
+            height: 170px;
+            width: 2px;
+            rotate: 0deg;
+            border-radius: 20px;
+            box-shadow: 1px 1px 5px 10px black;
+            position: absolute;
+            background-color: black;
+            top: 438px;
+            left: 770px;
+        }
+
+        .horizontal-stand
+        {
+            height: 100px;
+            width: 2px;
+            border: 2px solid black;
+            rotate: 90deg;
+            border-radius: 20px;
+            box-shadow: 1px 1px 5px 10px black;
+            background-color: black;
+            position: absolute;
+            top: 577px;
+            left: 770px;
+
+        }
+
+        .counttimer
+        {
+            height: 100px;
+            width: 300px;
+            position: absolute;
+            top: 18%;
+            left: 29%;
+            background-color: transparent;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            font-size: 52px;
+            color: yellow;
+        }
+
+        button{
+            width: 80px;
+            position: absolute;
+            bottom: 0px;
+            border-radius: 20px;
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            padding: 10px;
+            background-color: gray;
+            margin: 5px;
+        }
+
+        .start
+        {
+            bottom: 0px;
+            left: 250px;
+        }
+        button:hover{
+            scale: 1.1;
+            transition: ease-in;
+        }
+
+
+
+    </style>
+</head>
+<body >
+    <div class="main">
+        <div class="timebox">
+            <h1 class="counttimer"></h1>
+        </div>
+        <button class="start">Start</button>
+    </div>
+    <div class="vertical-stand"></div>
+    <div class="horizontal-stand"></div>
+
+
+    <script>
+
+    
+      const starttime = 5;
+      let time = starttime *60 ;   //300 sec
+
+     let gettimer=  document.querySelector(".counttimer");
+    //   function that decreement time by 1 sec
+
+
+    const countdown = ()=>
+    {
+        // first we take min and second which we want to display : 
+        let minute = Math.floor(time/60);    //5min
+        let second = time%60;
+
+        // i need to print both the value in inner html 
+   gettimer.innerHTML = `${minute} : ${second}`;
+   time--;
+    }
+
+    setInterval(() => {
+        countdown();
+    }, 1000);
+
+
+
+    </script>
+</body>
+</html>
