@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>stopwatch</title>
+    <style>
+        body {
+            background-image: url(./background.png);
+            background-repeat: no-repeat;
+            background-size: 100vw 100vh;
+        }
+
+        .btn {
+            display: flex;
+            position: absolute;
+            bottom: 20px;
+            left: 38%;
+            cursor: pointer;
+        }
+
+        #start:hover {
+            scale: 1.1;
+            transition: linear;
+        }
+
+        #stop:hover {
+            scale: 1.1;
+            transition: linear;
+        }
+
+        #reset:hover {
+            scale: 1.1;
+            transition: linear;
+        }
+
+
+
+
+        #start {
+            margin-left: 30px;
+            margin-right: 30px;
+            filter: drop-shadow(10px, 10px, 5px, 5px, rgb(13, 13, 219));
+        }
+
+        #stop {
+            margin-right: 30px;
+
+        }
+
+        #reset {
+            margin-left: 30px;
+        }
+
+
+        #container {
+            font-size: 204px;
+            text-align: center;
+            font-family: sans-serif;
+            color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 id="container">00:00:00</h1>
+    <div class="btn">
+        <div id="stop" ><img src="./stop.png" alt=""   onclick="watchstop()"></div>
+        <div id="start"><img src="./start.png" height="130px" alt="start"  onclick="watchstart()"></div>
+        <div id="reset"><img src="./reset.png" alt=""  onclick="watchReset()"></div>
+    </div>
+
+    <script>
+
+        let [seconds, minute, hours] = [0,0,0];             //step 2 to descirbea about hours, min, sec
+        let displaytime = document.getElementById("container");
+
+        let timer= null;
+
+        //  logic for stopwatch: 
+        function stopwatch() {
+
+            seconds++;
+            if (seconds == 60) {
+                seconds = 0;
+                minute++;
+                if (minute == 60) {
+                    minute = 0;
+                    hours++;
+
+                }
+            }
+           let h =  hours< 10 ? "0"+hours : hours;
+           let m=  minute <10 ? "0"+minute :minute;
+           let s = seconds<10? "0"+seconds :seconds ;
+
+
+            displaytime.innerHTML = h+":"+m+":"+s;
+        }
+
+        //3.start the stopwattch
+
+        function watchstart() {
+            if (timer !== null) {
+                clearInterval(timer);
+            }
+            timer = setInterval(stopwatch, 1000);   
+        }
+
+        // 4.stopwatch 
+        function watchstop()
+        {
+            clearInterval(timer);
+        }
+
+    //    5 reset
+        function watchReset()
+        {
+            clearInterval(timer);
+            [seconds, minute, hours]=[0,0,0];
+        }
+
+
+    </script>
+</body>
+
+</html>
