@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: rgb(197, 118, 118);
+        }
+
+        .main {
+            height: 600px;
+            width: 400px;
+            border: 2px solid black;
+            border-radius: 40px;
+            box-shadow: 2px 2px 70px 13px black;
+            position: absolute;
+            top: 10%;
+            left: 37%;
+            background-color: rgba(33, 31, 31, 0.922);
+        }
+
+
+        #txtarea {
+            background-color: rgb(191, 224, 140);
+            font-size: 32px;
+            border-radius: 10px;
+            text-align: right;
+            color: rgb(0, 0, 0);
+            width: 330px;
+            height: 60px;
+            position: absolute;
+            top: 10%;
+            left: 8%;
+        }
+
+        li {
+            list-style-type: none;
+        }
+
+        #first {
+
+            position: absolute;
+            top: 30%;
+            left: 6%;
+        }
+
+        #second {
+
+            position: absolute;
+            top: 42%;
+            left: 6%;
+        }
+
+        #third {
+
+            position: absolute;
+            top: 54%;
+            left: 6%;
+        }
+
+        #forth {
+
+            position: absolute;
+            top: 66%;
+            left: 6%;
+        }
+
+        .but {
+            height: 50px;
+            width: 70px;
+            font-size: 18px;
+            border-radius: 10px;
+            margin: 7px;
+            padding: 5px;
+            cursor: pointer;
+        }
+
+        .but:hover {
+            background-color: bisque;
+            scale: 1.1;
+        }
+
+        #equal {
+            height: 130px;
+            color: white;
+            background-color: orangered;
+            position: absolute;
+            left: 72%;
+            bottom: 10%;
+            font-size: 30px;
+        }
+
+        #zero {
+            width: 150px;
+            position: absolute;
+            bottom: 10%;
+            left: 6%;
+        }
+
+        #point {
+            /* height: 100px; */
+            position: absolute;
+            bottom: 10%;
+            left: 50%;
+            font-size: 30px;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="main">
+        <form>
+            <input id="txtarea" type="text">
+        </form>
+        <div class="btn">
+            <ul>
+                <li id="first">
+                    <button class="but">CLR</button>
+                    <button class="but">DEL</button>
+                    <button class="but">/</button>
+                    <button class="but">X</button>
+                </li>
+                <li id="second">
+                    <button class="but">7</button>
+                    <button class="but">8</button>
+                    <button class="but">9</button>
+                    <button class="but">-</button>
+                </li>
+                <li id="third">
+                    <button class="but">4</button>
+                    <button class="but">5</button>
+                    <button class="but">6</button>
+                    <button class="but">+</button>
+                </li>
+                <li id="forth">
+                    <button class="but">1</button>
+                    <button class="but">2</button>
+                    <button class="but">3</button>
+                </li>
+                <button class="but" id="equal">=</button>
+                <button class="but" id="zero">0</button>
+                <button class="but" id="point">.</button>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+
+        let display = document.querySelector("#txtarea");
+        let buttonaction = document.querySelectorAll("button");
+        //1.IF WE WANT TO REFRENCE ALL TEH BUTTON ONCE, THEN WE USE ARRY.FROM
+        let buttonarray = Array.from(buttonaction); //2USING ARRAY.FROM WE GET A NODE OF ALL THE BUTTONS
+
+        //3 FOR GETTING THE REFERENCE TO EACH BUTTONS: WE DIVING THE NODE TO GET THE EACH BUTTON 
+        let string = '';
+
+        buttonarray.forEach((btn) => {
+            btn.addEventListener('click', (event) => {
+                if (event.target.innerHTML == 'DEL') {
+                    // delete  text one by one 
+                    string = string.substring(0, string.length-1)
+                    display.value =string;
+                }
+                else if(event.target.innerHTML =='CLR')
+                {
+                    string = '';   //we clear all the text
+                    display.value = string;
+                }
+                else if(event.target.innerHTML=='=')
+                {
+                    string= eval(string);    //using eval method, which contains all evaluation like add, sub using string
+                    display.value=string;
+                }
+                else{
+                string += event.target.innerHTML;
+                display.value = string;
+                }
+
+
+                console.log(event.target.innerHTML);       //4HERE WE GET BUTTON REFERENCE by using innerhtml, we getdata
+            })
+        })
+    </script>
+</body>
+
+</html>
